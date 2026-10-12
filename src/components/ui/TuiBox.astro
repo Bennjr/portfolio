@@ -1,0 +1,20 @@
+---
+interface Props {
+    title: string;
+    color?: string;
+}
+
+const { title, color = "#267F52" } = Astro.props;
+---
+
+<fieldset
+    class="flex h-full w-full min-h-0 min-w-0 flex-col rounded-sm border-2 px-4 pb-4"
+    style={`border-color: ${color}`}
+>
+    <legend class="mx-1 px-1 font-mono" style={`color: ${color}`}
+        >{title}</legend
+    >
+    <div class="min-h-0 flex-1 overflow-auto">
+        <slot />
+    </div>
+</fieldset>

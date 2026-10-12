@@ -1,13 +1,20 @@
 ---
 import "../global.css";
+import TuiBox from "./ui/TuiBox.astro";
 ---
 
-<div>
-    <nav class="border-r border-r-gray-900 w-48 h-screen p-8">
-        <div class="w-6 text-white">
-            <button><a href="/">Home</a></button>
-            <button><a href="/about">About</a></button>
-            <button><a href="/projects">Projects</a></button>
-        </div>
-    </nav>
-</div>
+<nav class="h-full w-86 font-mono">
+    <TuiBox title="Navigation">
+        <ul class="flex flex-col gap-1 font-mono text-white">
+            <li><a class="block px-1 hover:bg-[#006080]" href="/">Home</a></li>
+            <li>
+                <a class="block px-1 hover:bg-[#006080]" href="/about">About</a>
+            </li>
+            <li>
+                <a class="block px-1 hover:bg-[#006080]" href="/projects"
+                    >Projects</a
+                >
+            </li>
+        </ul>
+    </TuiBox>
+</nav>

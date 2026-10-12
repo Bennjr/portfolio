@@ -1,13 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+
+import TuiBox from "../components/ui/TuiBox.astro";
 ---
 
 <Layout>
-    <div class="w-full h-full p-8 grid grid-cols-2">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-    </div>
+    <TuiBox title="Projects" color="#7A9EA1">
+        <div class="w-full h-full flex flex-row">
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+        </div>
+    </TuiBox>
 </Layout>

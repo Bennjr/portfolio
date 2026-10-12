@@ -1,37 +1,5 @@
 @import "tailwindcss";
 
-.crt {
-    color: #00ff00;
-    font-family: "Courier New", monospace;
-    text-align: center;
-    text-shadow: 0 0 10px #00ff00;
-    background-color: #010801;
-}
-
-.scanlines {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-
-    background: linear-gradient(to bottom,
-            transparent 50%,
-            rgba(0, 255, 0, 0.07) 50%);
-    background-size: 100% 5px;
-}
-
-@media screen {
-    .scanlines {
-        animation: scanlines 55s linear infinite;
-    }
-}
-
-@keyframes scanlines {
-    from {
-        background-position: 0 0;
-    }
-
-    to {
-        background-position: 0 -10px;
-    }
+@theme {
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
