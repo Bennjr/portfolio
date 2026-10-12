@@ -1,6 +1,10 @@
 ---
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import "../global.css";
+
+import Cursor from "../components/crt/Cursor.astro";
+import CrtBend from "../components/crt/CrtBend.astro";
 ---
 
 <!doctype html>
@@ -13,29 +17,15 @@ import Footer from "../components/Footer.astro";
 		<meta name="generator" content={Astro.generator} />
 		<title>Portfolio</title>
 	</head>
-	<body>
-		<div class="page">
-			<Nav />
-			<slot />
+	<body class="crt">
+		<Cursor />
+
+		<div id="crt-root" class="fixed inset-0 overflow-auto">
+			<div class="scanlines" aria-hidden="true"></div>
+			<div class="flex flex-row w-screen h-screen">
+				<Nav />
+				<slot />
+			</div>
 		</div>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		min-height: 100vh;
-		width: 100%;
-		height: 100%;
-	}
-
-	.page {
-		display: flex;
-		height: 100%;
-		width: 100%;
-		flex-direction: row;
-		border-color: black;
-		border-right: 1px;
-	}
-</style>

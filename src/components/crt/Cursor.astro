@@ -1,0 +1,61 @@
+---
+// ===== CONFIG =====
+const glow = {
+    size: 1000,
+    color: "200, 255, 200",
+    smoothing: 0.08,
+    stops: [
+        [0.16, 0],
+        [0.08, 15],
+        [0.03, 30],
+        [0, 45],
+    ],
+};
+// ==================
+
+const gradient = `radial-gradient(closest-side, ${glow.stops
+    .map(([a, pos]) => `rgba(${glow.color}, ${a}) ${pos}%`)
+    .join(", ")})`;
+---
+
+<div
+    id="cursor-blur"
+    aria-hidden="true"
+    data-smoothing={glow.smoothing}
+    style={`width:${glow.size}px;height:${glow.size}px;background:${gradient};`}
+    class="pointer-events-none fixed left-0 top-0 z-[9998] opacity-0 transition-opacity duration-300 will-change-transform [@media(hover:none)]:hidden"
+>
+</div>
+
+<script>
+    const el = document.getElementById("cursor-blur");
+
+    if (el) {
+        const size = el.offsetWidth;
+        const smoothing = Number(el.dataset.smoothing ?? 0.15);
+        let targetX = 0,
+            targetY = 0;
+        let currentX = 0,
+            currentY = 0;
+
+        window.addEventListener("mousemove", (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+            el.classList.remove("opacity-0");
+            el.classList.add("opacity-100");
+        });
+
+        document.addEventListener("mouseleave", () => {
+            el.classList.remove("opacity-100");
+            el.classList.add("opacity-0");
+        });
+
+        function animate() {
+            currentX += (targetX - currentX) * smoothing;
+            currentY += (targetY - currentY) * smoothing;
+            el!.style.transform = `translate(${currentX - size / 2}px, ${currentY - size / 2}px)`;
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+</script>
